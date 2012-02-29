@@ -5,7 +5,9 @@ FakePages::Application.routes.draw do
   match "/ig/api"      => "pages#random_google"
   match "/quote/:name" => "pages#random_bloomberg"
   match "/q"           => "pages#random_yahoo"
-  
+  match "/update"      => "tickers#update_all", :as => :update
+
+  root :to => 'sources#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -53,10 +55,6 @@ FakePages::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-
-  # You can have the root of your site routed with "root"
-  # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
 
   # See how all your routes lay out with "rake routes"
 

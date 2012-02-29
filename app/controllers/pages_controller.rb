@@ -16,11 +16,13 @@ class PagesController < ApplicationController
   end
 
   def random_google
-
+    @page = Source.find_by_name("google").tickers.find_by_name(params[:stock]).pages.sample
+    render "show"
   end
 
   def random_yahoo
-
+    @page = Source.find_by_name("yahoo").tickers.find_by_name(params[:s]).pages.sample
+    render "show"
   end
 
   # GET /pages/1

@@ -69,6 +69,23 @@ class TickersController < ApplicationController
     end
   end
 
+  def update_all
+    require "net/http"
+    require "uri"
+
+    Ticker.all.each do |ticker|
+      uri = URI.parse(ticker.source.url + ticker.name)
+      res = Net::HTTP.get_response(uri)
+      page = Page.new :ticker => ticker, :content => res.body
+      page.save
+    end
+
+    respond_to do |format|
+      format.html { redirect_to pages_url }
+      format.json { head :no_content }
+    end
+  end
+
   # DELETE /tickers/1
   # DELETE /tickers/1.json
   def destroy

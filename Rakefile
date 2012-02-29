@@ -16,7 +16,8 @@ task :setup do
     File.open(host_file_path, "a") do |file|
       file.puts "127.0.0.1	bloomberg.com"
       file.puts "127.0.0.1	www.bloomberg.com"
-      file.puts "127.0.0.1	finance.google.com"
+      file.puts "127.0.0.1	google.com"
+      file.puts "127.0.0.1	www.google.com"
       file.puts "127.0.0.1	finance.yahoo.com"
     end
     puts "Quote service URLs added to Windows hosts file."
