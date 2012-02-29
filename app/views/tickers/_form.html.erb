@@ -1,0 +1,25 @@
+<%= form_for(@ticker) do |f| %>
+  <% if @ticker.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@ticker.errors.count, "error") %> prohibited this ticker from being saved:</h2>
+
+      <ul>
+      <% @ticker.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :source %><br />
+    <%= f.collection_select(:source_id, Source.all, :id, :name) %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
